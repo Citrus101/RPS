@@ -13,8 +13,58 @@
         {
             let rps = ["Rock","Paper","Scissor"];
             return rps[(Math.floor(Math.random()*10)%3)];
+
         }
-        
+        function RPS(playerSelection, computerSelection)
+        {
+            playerSelection = playerSelection[0].toUpperCase()+(playerSelection.slice(1)).toLowerCase();
+            computerSelection = computerSelection[0].toUpperCase()+(computerSelection.slice(1)).toLowerCase();
+
+
+            if (((playerSelection == "Scissor") && (computerSelection == "Rock")) || ((playerSelection == "Paper") && (computerSelection == "Scissor")) || ((playerSelection == "Rock") && (computerSelection == "Paper")) )
+            {
+                console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
+                return 'lose';
+            }
+
+            else if (((playerSelection == "Scissor") && (computerSelection == "Paper")) || ((playerSelection == "Paper") && (computerSelection == "Rock")) || ((playerSelection == "Rock") && (computerSelection == "Scissor")) )
+            {
+                console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
+                return 'win';
+            }
+
+            else
+            {
+            // console.log("nice");
+            return RPS(playerSelection,getComputerChoice());
+            }
+            
+        }
+        // const playerSelection = 'rock';
+        // const computerSelection = getComputerChoice();
+
+        function game()
+        {
+            let player=0,computer=0;
+            // let round = RPS();
+
+            for(let i=0;i<5;i++)
+            {
+                let playerSelection = prompt("Rock Paper or Scissors? ");
+                round = RPS(playerSelection,getComputerChoice());
+                
+                if (round == 'win') (player++);
+                else if(round == 'lose') (computer++);
+                // else i--;
+            }
+
+            if(player>computer) console.log("You win!!!");
+            else console.log("You Lose!! Better luck next time");
+        }
+
+        game();
+
+
     </script>
 </body>
 </html>
